@@ -1,21 +1,28 @@
-import numpy as np #Import module numpy to work with matrix 
+from numpy import array, zeros, matrix, linalg, dot, loadtxt, random,ones
 import scipy as sp
-def choleskyFactoring(matrix):
-    dim = np.range(matrix)
-    C = np.zeros((dim,dim),float)
-    
-    
-                
+import math 
+def choleskyFactoring(A):
+    dim = len(A)
+    L = zeros((dim,dim),"f")
 
+    return L
+                
 def solveEcuation():
     pass
 
 def readInput(path):
-    pass
+    M = loadtxt(path)
+    return M
 def writeOutput(path):
     pass
 
 if __name__ == '__main__':
-    #A = np.loadtxt('p1/xmatrix.txt',float)
-    #solutionM = np.loadtxt()
-    C = np.zeros((2,2),float)  
+    A = readInput('p1/xmatrix.txt')
+    C = choleskyFactoring(A)
+    S = linalg.cholesky(A)
+
+    print('Solucion Cholesky \n' + str(S))
+    print('Mi solucion \n '+str(C))
+    
+
+    
