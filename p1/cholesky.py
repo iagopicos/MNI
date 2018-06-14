@@ -1,6 +1,15 @@
 import numpy as np
 import scipy as sp
 import math 
+def traspuesta(M):
+    dim = len(M)
+    Mt = np.zeros((dim,dim),"f")
+
+    for i in range(dim):
+        for j in range(dim):
+            Mt[i,j] = M[j,i]
+    return Mt
+
 def choleskyFactoring(A):
     dim = len(A)
     L = np.zeros((dim,dim),"f")
@@ -14,8 +23,12 @@ def choleskyFactoring(A):
                 L[i,j] = 1 / L[j,j] * (A[i,j] - sumatory) 
     return L
                 
-def solveEcuation():
-    pass
+def solveEcuation(A):
+    C = choleskyFactoring(A)
+    Ct = traspuesta(C)
+    Y = C*Ct
+
+    return Y
 
 def readInput(path):
     M = np.loadtxt(path,"f")
@@ -24,12 +37,9 @@ def writeOutput(path):
     pass
 
 if __name__ == '__main__':
-    A = readInput('p1/xmatrix.txt')
+    A = readInput('p1/matrix/xmatrix.txt')
     C = choleskyFactoring(A)
-    S = np.linalg.cholesky(A)
-
-    print('Solucion Cholesky \n' + str(S))
-    print('Mi solucion \n '+str(C))
-    
+    Y = C * traspuesta(C)
+    print(Y)
 
     
