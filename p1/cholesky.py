@@ -24,11 +24,9 @@ def choleskyFactoring(A):
     return L
                 
 def solveEcuation(A):
-    C = choleskyFactoring(A)
-    Ct = traspuesta(C)
-    Y = C*Ct
+  
 
-    return Y
+    pass
 
 def readInput(path):
     M = np.loadtxt(path,"f")
@@ -38,8 +36,9 @@ def writeOutput(path):
 
 if __name__ == '__main__':
     A = readInput('p1/matrix/xmatrix.txt')
+    print(A)
     C = choleskyFactoring(A)
-    Y = C * traspuesta(C)
+    C = np.linalg.cholesky(A)
+    Y =  np.dot(C, traspuesta(C))
     print(Y)
-
     
