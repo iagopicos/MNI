@@ -44,9 +44,28 @@ def optimGradient(A,b,x0,maxIter,maxErr):
     print k   
     return x
 
+def conjGradient(A,b,x0,maxIter,maxErr):
+    k = 0
+    x = x0
+    r = b-np.dot(A,x)
+    p = r
+    #error = .0
+    while (k<maxIter):
+        k+=1
+        alpha = np.dot(r,r) / np.dot(np.transpose(p),np.dot(A,p)) 
+        x = x + alpha*p
+        r0 = r
+        r = r - alpha * np.dot(A,p)
+        beta = np.dot(r,r) / np.dot(r0,r0)
+        p = r +  beta*p
+    
+    print k   
+    return x
+
 
 if __name__ == '__main__':
     A = readMatrix('xmatrix.txt')
     xvector = readVector('xvector.txt')
     print richardsonMethod(A,xvector,[0,0,0],5,0)
     print optimGradient(A,xvector,[0,0,0],8,0)
+    print conjGradient(A,xvector,[0,0,0],2,0)
